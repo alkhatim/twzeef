@@ -1,7 +1,6 @@
 const INIT_STATE = {
   user: null,
   isLoggedIn: false,
-  isLoading: false,
 };
 
 const reducer = (state = INIT_STATE, action) => {
@@ -15,7 +14,6 @@ const reducer = (state = INIT_STATE, action) => {
           username: action.payload.username || "username",
         },
         isLoggedIn: true,
-        isLoading: false,
       };
     case "LOGIN_FAILED":
     case "LOGGED_OUT":
@@ -23,7 +21,6 @@ const reducer = (state = INIT_STATE, action) => {
         ...state,
         user: null,
         isLoggedIn: false,
-        isLoading: false,
       };
 
     default:

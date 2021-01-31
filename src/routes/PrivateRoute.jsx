@@ -11,9 +11,9 @@ const PrivateRoute = ({
 }) => {
   const history = useHistory();
   const location = useLocation();
-  const { isLoggedIn, isLoading, user } = useSelector((store) => store.auth);
+  const { isLoggedIn, user } = useSelector((store) => store.auth);
 
-  if (isLoading || !isLoggedIn) {
+  if (!isLoggedIn) {
     history.push("/login");
   }
 
@@ -29,7 +29,7 @@ const PrivateRoute = ({
     <Route
       {...rest}
       render={() =>
-        !isLoading && !isLoggedIn ? (
+        !isLoggedIn ? (
           <Redirect
             to={{
               pathname: "/login",

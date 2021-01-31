@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { login } from "../../store/actions/authActions";
 import { Row, Col, CardBody, Card, Alert, Container } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -10,9 +10,8 @@ import logo from "assets/images/logo.svg";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
-  const { isLoading, isLoggedIn } = useSelector((store) => store.auth);
+  const { isLoggedIn } = useSelector((store) => store.auth);
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -20,15 +19,13 @@ const Login = () => {
     remeberMe: false,
   });
 
-  if (!isLoading && isLoggedIn) {
-    history.push("/dashboard");
-  }
-
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  return (
+  return isLoggedIn ? (
+    <Redirect to="/dashboard" />
+  ) : (
     <React.Fragment>
       <div className="home-btn d-none d-sm-block">
         <Link to="/" className="text-dark">
