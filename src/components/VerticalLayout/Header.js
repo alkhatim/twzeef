@@ -64,7 +64,9 @@ const Header = () => {
             </button>
           </div>
           <div className="d-flex">
-            <h2 style={{ fontFamily: "fantasy" }}>توظيف للإستخدام الخارجي</h2>
+            <h2 style={{ fontFamily: "fantasy", color: "white" }}>
+              توظيف للإستخدام الخارجي
+            </h2>
           </div>
           <div className="d-flex">
             <ProfileMenu />

@@ -3,7 +3,7 @@ const INIT_STATE = {
   layoutWidth: "fluid",
   leftSideBarTheme: "dark",
   leftSideBarType: "default",
-  topbarTheme: "light",
+  topbarTheme: "dark",
   isPreloader: false,
   showRightSidebar: false,
   isMobile: false,
