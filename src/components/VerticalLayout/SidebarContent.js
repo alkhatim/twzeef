@@ -73,6 +73,48 @@ const SidebarContent = (props) => {
               <span>الصفحة الرئيسية</span>
             </Link>
           </li>
+          <li>
+            <Link to="/#" className="has-arrow waves-effect">
+              <i className="bx bxs-user-detail"></i>
+              <span>المراجع</span>
+            </Link>
+            <ul className="sub-menu" aria-expanded="false">
+              <li>
+                <Link to="/references">جميع المراجع</Link>
+              </li>
+              <li>
+                <Link to="/add-reference">إضافة مرجع</Link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <Link to="/#" className="has-arrow waves-effect">
+              <i className="bx bxs-user-detail"></i>
+              <span>الوكلاء</span>
+            </Link>
+            <ul className="sub-menu" aria-expanded="false">
+              <li>
+                <Link to="/deputies">جميع الوكلاء</Link>
+              </li>
+              <li>
+                <Link to="/add-deputy">إضافة وكيل</Link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <Link to="/#" className="has-arrow waves-effect">
+              <i className="bx bxs-user-detail"></i>
+              <span>المناديب</span>
+            </Link>
+            <ul className="sub-menu" aria-expanded="false">
+              <li>
+                <Link to="/delegates">جميع المناديب</Link>
+              </li>
+              <li>
+                <Link to="/add-delegate">إضافة مندوب</Link>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
     </React.Fragment>
