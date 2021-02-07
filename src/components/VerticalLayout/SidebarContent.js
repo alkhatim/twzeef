@@ -115,6 +115,20 @@ const SidebarContent = (props) => {
               </li>
             </ul>
           </li>
+          <li>
+            <Link to="/#" className="has-arrow waves-effect">
+              <i className="bx bxs-user-detail"></i>
+              <span>المستخدمين</span>
+            </Link>
+            <ul className="sub-menu" aria-expanded="false">
+              <li>
+                <Link to="/agency-users">جميع المستخدمين</Link>
+              </li>
+              <li>
+                <Link to="/add-agency-user">إضافة مستخدم</Link>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
     </React.Fragment>

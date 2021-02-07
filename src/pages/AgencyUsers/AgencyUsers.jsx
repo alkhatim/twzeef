@@ -11,14 +11,14 @@ import Breadcrumbs from "components/Common/Breadcrumb";
 //Import Card
 import CardContact from "../../components/Common/ContactCard";
 
-import { getDelegates } from "../../store/actions/delegatesActions";
+import { getAgencyUsers } from "../../store/actions/agencyUsersActions";
 
 const ContactsGrid = (props) => {
-  const { delegates, onGetDelegates } = props;
+  const { agencyUsers, onGetAgencyUsers } = props;
 
   useEffect(() => {
-    onGetDelegates();
-  }, [onGetDelegates]);
+    onGetAgencyUsers();
+  }, [onGetAgencyUsers]);
 
   return (
     <React.Fragment>
@@ -28,7 +28,7 @@ const ContactsGrid = (props) => {
           <Breadcrumbs title="Contacts" breadcrumbItem="Users Grid" />
 
           <Row>
-            {map(delegates, (user, key) => (
+            {map(agencyUsers, (user, key) => (
               <CardContact user={user} key={"_user_" + key} />
             ))}
           </Row>
@@ -50,16 +50,16 @@ const ContactsGrid = (props) => {
 };
 
 ContactsGrid.propTypes = {
-  delegates: PropTypes.array,
-  onGetDelegates: PropTypes.func,
+  agencyUsers: PropTypes.array,
+  onGetAgencyUsers: PropTypes.func,
 };
 
-const mapStateToProps = ({ delegates }) => ({
-  delegates: delegates.delegates,
+const mapStateToProps = ({ agencyUsers }) => ({
+  agencyUsers: agencyUsers.agencyUsers,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetDelegates: () => dispatch(getDelegates()),
+  onGetAgencyUsers: () => dispatch(getAgencyUsers()),
 });
 
 export default connect(
