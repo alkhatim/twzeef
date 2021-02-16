@@ -10,6 +10,8 @@ import Delegates from "../pages/Delegates/Delegates";
 import NewDelegate from "../pages/Delegates/NewDelegate";
 import AgencyUsers from "../pages/AgencyUsers/AgencyUsers";
 import NewAgencyUser from "../pages/AgencyUsers/NewAgencyUser";
+import Clients from "../pages/Clients/Clients";
+import NewClient from "../pages/Clients/NewClient";
 
 const privateRoutes = [
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
@@ -22,6 +24,8 @@ const privateRoutes = [
   { path: "/add-delegate", component: NewDelegate },
   { path: "/agency-users", component: AgencyUsers },
   { path: "/add-agency-user", component: NewAgencyUser },
+  { path: "/my-clients", component: Clients },
+  { path: "/add-client", component: NewClient },
 ];
 
 const publicRoutes = [{ path: "/login", component: Login }];

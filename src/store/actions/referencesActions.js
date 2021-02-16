@@ -18,6 +18,16 @@ export const getReferences = () => async (dispatch) => {
   }
 };
 
+export const getReferences__ = async () => {
+  try {
+    const result = await http.get("/references/myreferences");
+    const references = result.data.data;
+    return references;
+  } catch (error) {
+    messages.error(error);
+  }
+};
+
 export const getReference = (id) => async (dispatch) => {
   try {
     const result = await http.get(`/references/${id}`);
