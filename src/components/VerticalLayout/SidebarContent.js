@@ -90,6 +90,17 @@ const SidebarContent = (props) => {
           <li>
             <Link to="/#" className="has-arrow waves-effect">
               <i className="bx bxs-user-detail"></i>
+              <span>التأشيرات</span>
+            </Link>
+            <ul className="sub-menu" aria-expanded="false">
+              <li>
+                <Link to="/add-visa">إضافة تأشيرة</Link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <Link to="/#" className="has-arrow waves-effect">
+              <i className="bx bxs-user-detail"></i>
               <span>المراجع</span>
             </Link>
             <ul className="sub-menu" aria-expanded="false">

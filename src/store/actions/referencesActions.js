@@ -2,23 +2,7 @@ import { referencesConstants } from "../constants/referencesConstants";
 import http from "../../services/http";
 import messages from "../../services/messages";
 
-export const getReferences = () => async (dispatch) => {
-  try {
-    const result = await http.get("/references/myreferences");
-    const references = result.data.data;
-    dispatch({
-      type: referencesConstants.GET_REFERENCES_SUCCESS,
-      payload: references,
-    });
-  } catch (error) {
-    messages.error(error);
-    dispatch({
-      type: referencesConstants.GET_REFERENCES_FAIL,
-    });
-  }
-};
-
-export const getReferences__ = async () => {
+export const getReferences = async () => {
   try {
     const result = await http.get("/references/myreferences");
     const references = result.data.data;
@@ -28,32 +12,27 @@ export const getReferences__ = async () => {
   }
 };
 
-export const getReference = (id) => async (dispatch) => {
+export const getReference = async (id) => {
   try {
     const result = await http.get(`/references/${id}`);
     const reference = result.data.data;
-    dispatch({
-      type: referencesConstants.GET_REFERENCE_SUCCESS,
-      payload: reference,
-    });
+    return reference;
   } catch (error) {
     messages.error(error);
-    dispatch({
-      type: referencesConstants.GET_REFERENCE_FAIL,
-    });
   }
 };
 
 export const addReference = async (ref) => {
   try {
     const result = await http.post(`/references`, ref);
+    messages.success("Added Successfully");
     return result.data.data;
   } catch (error) {
     messages.error(error);
   }
 };
 
-export const EditReference = (id, name, email, phone) => async (dispatch) => {
+export const EditReference = async (id, name, email, phone) => {
   try {
     const result = await http.put(`/references/${id}`, {
       name: name,
@@ -61,31 +40,18 @@ export const EditReference = (id, name, email, phone) => async (dispatch) => {
       phoneNumber: phone,
     });
     const reference = result.data.data;
-    dispatch({
-      type: referencesConstants.EDIT_REFERENCE_SUCCESS,
-      payload: reference,
-    });
     messages.success("Edited Successfully");
+    return reference;
   } catch (error) {
     messages.error(error);
-    dispatch({
-      type: referencesConstants.EDIT_REFERENCE_FAIL,
-    });
   }
 };
 
-export const deleteReference = (id) => async (dispatch) => {
+export const deleteReference = async (id) => {
   try {
     await http.delete(`/references/${id}`);
-    dispatch({
-      type: referencesConstants.DELETE_REFERENCE_SUCCESS,
-      payload: id,
-    });
     messages.success("Deleted Successfully");
   } catch (error) {
     messages.error(error);
-    dispatch({
-      type: referencesConstants.DELETE_REFERENCE_FAIL,
-    });
   }
 };

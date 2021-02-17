@@ -61,7 +61,6 @@ const FormWizard = () => {
           setprogressValue(67);
         }
         if (tab === 3) {
-          dispatch(addDeputy(deputy));
           setprogressValue(100);
         }
       }
@@ -113,9 +112,7 @@ const FormWizard = () => {
                           className={classnames({
                             active: activeTabProgress === 3,
                           })}
-                          onClick={() => {
-                            toggleTabProgress(3);
-                          }}
+                          disabled
                         >
                           <span className="step-number mr-2">03</span>
                           Confirm Detail
@@ -372,7 +369,16 @@ const FormWizard = () => {
                         <Link
                           to="#"
                           onClick={() => {
-                            toggleTabProgress(activeTabProgress + 1);
+                            if (activeTabProgress === 2) {
+                              try {
+                                addDeputy(deputy);
+                                toggleTabProgress(activeTabProgress + 1);
+                              } catch (error) {
+                                console.log(error);
+                              }
+                            } else {
+                              toggleTabProgress(activeTabProgress + 1);
+                            }
                           }}
                         >
                           Next

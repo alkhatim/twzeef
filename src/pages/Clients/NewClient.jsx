@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getReferences__ } from "../../store/actions/referencesActions";
+import { getReferences } from "../../store/actions/referencesActions";
 import { getCountries } from "../../store/actions/lookups";
 
 import {
@@ -34,7 +34,6 @@ const NewClient = () => {
   const [progressValue, setprogressValue] = useState(25);
   const [references, setReferences] = useState([]);
   const [countries, setCountries] = useState([]);
-  const [refKey, setRefKey] = useState(-1);
   const [countryKey, setCountryKey] = useState(-1);
   const [client, setClient] = useState({
     name: "",
@@ -55,12 +54,11 @@ const NewClient = () => {
     hasExitVisaRequest: false,
     hasOtherServices: false,
   });
-  const dispatch = useDispatch();
   const params = useParams();
 
   useEffect(() => {
     const fetch = async () => {
-      const result = await getReferences__();
+      const result = await getReferences();
       setReferences(result);
       const cs = await getCountries();
       setCountries(cs);
@@ -109,7 +107,6 @@ const NewClient = () => {
           setprogressValue(75);
         }
         if (tab === 4) {
-          createClient(client);
           setprogressValue(100);
         }
       }
@@ -174,9 +171,7 @@ const NewClient = () => {
                           className={classnames({
                             active: activeTabProgress === 4,
                           })}
-                          onClick={() => {
-                            toggleTabProgress(4);
-                          }}
+                          disabled
                         >
                           <span className="step-number mr-2">04</span>
                           Confirm Detail
@@ -495,7 +490,16 @@ const NewClient = () => {
                         <Link
                           to="#"
                           onClick={() => {
-                            toggleTabProgress(activeTabProgress + 1);
+                            if (activeTabProgress === 3) {
+                              try {
+                                createClient(client);
+                                toggleTabProgress(activeTabProgress + 1);
+                              } catch (error) {
+                                console.log(error);
+                              }
+                            } else {
+                              toggleTabProgress(activeTabProgress + 1);
+                            }
                           }}
                         >
                           Next

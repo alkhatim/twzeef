@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { map } from "lodash";
 
@@ -13,12 +11,17 @@ import CardContact from "../../components/Common/ContactCard";
 
 import { getAgencyUsers } from "../../store/actions/agencyUsersActions";
 
-const ContactsGrid = (props) => {
-  const { agencyUsers, onGetAgencyUsers } = props;
+const AgencyUsers = (props) => {
+  const params = useParams();
+  const [agencyUsers, setAgencyUsers] = useState([]);
 
   useEffect(() => {
-    onGetAgencyUsers();
-  }, [onGetAgencyUsers]);
+    const fetch = async () => {
+      const result = await getAgencyUsers();
+      setAgencyUsers(result);
+    };
+    fetch();
+  }, [params]);
 
   return (
     <React.Fragment>
@@ -49,20 +52,4 @@ const ContactsGrid = (props) => {
   );
 };
 
-ContactsGrid.propTypes = {
-  agencyUsers: PropTypes.array,
-  onGetAgencyUsers: PropTypes.func,
-};
-
-const mapStateToProps = ({ agencyUsers }) => ({
-  agencyUsers: agencyUsers.agencyUsers,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onGetAgencyUsers: () => dispatch(getAgencyUsers()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(ContactsGrid));
+export default AgencyUsers;

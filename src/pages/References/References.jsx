@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { map } from "lodash";
 
@@ -13,12 +11,17 @@ import CardContact from "../../components/Common/ContactCard";
 
 import { getReferences } from "../../store/actions/referencesActions";
 
-const ContactsGrid = (props) => {
-  const { references, onGetReferences } = props;
+const References = (props) => {
+  const params = useParams();
+  const [references, setReferences] = useState([]);
 
   useEffect(() => {
-    onGetReferences();
-  }, [onGetReferences]);
+    const fetch = async () => {
+      const result = await getReferences();
+      setReferences(result);
+    };
+    fetch();
+  }, [params]);
 
   return (
     <React.Fragment>
@@ -49,20 +52,4 @@ const ContactsGrid = (props) => {
   );
 };
 
-ContactsGrid.propTypes = {
-  references: PropTypes.array,
-  onGetReferences: PropTypes.func,
-};
-
-const mapStateToProps = ({ references }) => ({
-  references: references.references,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onGetReferences: () => dispatch(getReferences()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(ContactsGrid));
+export default References;

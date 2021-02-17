@@ -29,18 +29,12 @@ export const addDelegate = async (delegate) => {
   }
 };
 
-export const getDelegates = () => async (dispatch) => {
+export const getDelegates = async () => {
   try {
     const result = await http.get("/delegates/my-delegates");
     const delegates = result.data.data;
-    dispatch({
-      type: delegatesConstants.GET_DELEGATES_SUCCESS,
-      payload: delegates,
-    });
+    return delegates;
   } catch (error) {
     messages.error(error);
-    dispatch({
-      type: delegatesConstants.GET_DELEGATES_FAIL,
-    });
   }
 };

@@ -11,19 +11,13 @@ export const postAgencyUser = async (user) => {
   }
 };
 
-export const getAgencyUsers = () => async (dispatch) => {
+export const getAgencyUsers = async () => {
   try {
     const result = await http.get("/auth/agencyusers");
     const agencyUsers = result.data.data;
-    dispatch({
-      type: agencyUsersConstants.GET_AGENCY_USERS_SUCCESS,
-      payload: agencyUsers,
-    });
+    return agencyUsers;
   } catch (error) {
     messages.error(error);
-    dispatch({
-      type: agencyUsersConstants.GET_AGENCY_USERS_FAIL,
-    });
   }
 };
 

@@ -12,6 +12,7 @@ import AgencyUsers from "../pages/AgencyUsers/AgencyUsers";
 import NewAgencyUser from "../pages/AgencyUsers/NewAgencyUser";
 import Clients from "../pages/Clients/Clients";
 import NewClient from "../pages/Clients/NewClient";
+import NewVisa from "../pages/Visas/NewVisa";
 
 const privateRoutes = [
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
@@ -26,6 +27,7 @@ const privateRoutes = [
   { path: "/add-agency-user", component: NewAgencyUser },
   { path: "/my-clients", component: Clients },
   { path: "/add-client", component: NewClient },
+  { path: "/add-visa", component: NewVisa },
 ];
 
 const publicRoutes = [{ path: "/login", component: Login }];

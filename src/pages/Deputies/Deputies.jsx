@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { map } from "lodash";
 
@@ -13,12 +11,17 @@ import CardContact from "../../components/Common/ContactCard";
 
 import { getDeputies } from "../../store/actions/deputiesActions";
 
-const ContactsGrid = (props) => {
-  const { deputies, onGetDeputies } = props;
+const Deputies = (props) => {
+  const params = useParams();
+  const [deputies, setDeputies] = useState([]);
 
   useEffect(() => {
-    onGetDeputies();
-  }, [onGetDeputies]);
+    const fetch = async () => {
+      const result = await getDeputies();
+      setDeputies(result);
+    };
+    fetch();
+  }, [params]);
 
   return (
     <React.Fragment>
@@ -49,20 +52,4 @@ const ContactsGrid = (props) => {
   );
 };
 
-ContactsGrid.propTypes = {
-  deputies: PropTypes.array,
-  onGetDeputies: PropTypes.func,
-};
-
-const mapStateToProps = ({ deputies }) => ({
-  deputies: deputies.deputies,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onGetDeputies: () => dispatch(getDeputies()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(ContactsGrid));
+export default Deputies;

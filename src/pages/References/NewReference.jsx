@@ -49,7 +49,6 @@ const FormWizard = () => {
           setprogressValue(50);
         }
         if (tab === 2) {
-          dispatch(addReference(reference));
           setprogressValue(100);
         }
       }
@@ -88,9 +87,7 @@ const FormWizard = () => {
                           className={classnames({
                             active: activeTabProgress === 2,
                           })}
-                          onClick={() => {
-                            toggleTabProgress(2);
-                          }}
+                          disabled
                         >
                           <span className="step-number mr-2">02</span>
                           النهاية
@@ -209,7 +206,12 @@ const FormWizard = () => {
                         <Link
                           to="#"
                           onClick={() => {
-                            toggleTabProgress(activeTabProgress + 1);
+                            try {
+                              addReference(reference);
+                              toggleTabProgress(activeTabProgress + 1);
+                            } catch (error) {
+                              console.log(error);
+                            }
                           }}
                         >
                           Next

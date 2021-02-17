@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import messages from "../../services/messages";
 
 import {
   Card,
@@ -57,7 +58,6 @@ const FormWizard = () => {
           setprogressValue(67);
         }
         if (tab === 3) {
-          dispatch(postAgencyUser(agencyUser));
           setprogressValue(100);
         }
       }
@@ -109,9 +109,7 @@ const FormWizard = () => {
                           className={classnames({
                             active: activeTabProgress === 3,
                           })}
-                          onClick={() => {
-                            toggleTabProgress(3);
-                          }}
+                          disabled
                         >
                           <span className="step-number mr-2">03</span>
                           Confirm Detail
@@ -314,8 +312,17 @@ const FormWizard = () => {
                       >
                         <Link
                           to="#"
-                          onClick={() => {
-                            toggleTabProgress(activeTabProgress + 1);
+                          onClick={async () => {
+                            if (activeTabProgress === 2) {
+                              try {
+                                await postAgencyUser(agencyUser);
+                                toggleTabProgress(activeTabProgress + 1);
+                              } catch (error) {
+                                messages(error);
+                              }
+                            } else {
+                              toggleTabProgress(activeTabProgress + 1);
+                            }
                           }}
                         >
                           Next

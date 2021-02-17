@@ -2,35 +2,23 @@ import { deputiesConstants } from "../constants/deputiesConstants";
 import http from "../../services/http";
 import messages from "../../services/messages";
 
-export const getDeputies = () => async (dispatch) => {
+export const getDeputies = async () => {
   try {
     const result = await http.get("/deputies/mydeputies");
     const deputies = result.data.data;
-    dispatch({
-      type: deputiesConstants.GET_DEPUTIES_SUCCESS,
-      payload: deputies,
-    });
+    return deputies;
   } catch (error) {
     messages.error(error);
-    dispatch({
-      type: deputiesConstants.GET_DEPUTIES_FAIL,
-    });
   }
 };
 
-export const getDeputy = (id) => async (dispatch) => {
+export const getDeputy = async (id) => {
   try {
     const result = await http.get(`/deputies/${id}`);
     const deputy = result.data.data;
-    dispatch({
-      type: deputiesConstants.GET_DEPUTY_SUCCESS,
-      payload: deputy,
-    });
+    return deputy;
   } catch (error) {
     messages.error(error);
-    dispatch({
-      type: deputiesConstants.GET_DEPUTY_FAIL,
-    });
   }
 };
 
@@ -45,35 +33,22 @@ export const addDeputy = async (dep) => {
   }
 };
 
-export const EditDeputy = (dep) => async (dispatch) => {
+export const EditDeputy = async (dep) => {
   try {
     const result = await http.put(`/deputies/${dep._id}`, dep);
     const deputy = result.data.data;
-    dispatch({
-      type: deputiesConstants.EDIT_DEPUTY_SUCCESS,
-      payload: deputy,
-    });
     messages.success("Edited Successfully");
+    return deputy;
   } catch (error) {
     messages.error(error);
-    dispatch({
-      type: deputiesConstants.EDIT_DEPUTY_FAIL,
-    });
   }
 };
 
-export const deleteDeputy = (id) => async (dispatch) => {
+export const deleteDeputy = async (id) => {
   try {
     await http.delete(`/deputies/${id}`);
-    dispatch({
-      type: deputiesConstants.DELETE_DEPUTY_SUCCESS,
-      payload: id,
-    });
     messages.success("Deleted Successfully");
   } catch (error) {
     messages.error(error);
-    dispatch({
-      type: deputiesConstants.DELETE_DEPUTY_FAIL,
-    });
   }
 };
