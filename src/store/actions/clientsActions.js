@@ -1,3 +1,4 @@
+import { clientsConstants } from "../constants/clientsConstants";
 import http from "../../services/http";
 import messages from "../../services/messages";
 // import { saveAs } from "file-saver";
@@ -246,14 +247,29 @@ export const getClient = async (id) => {
   }
 };
 
-export const getClients = async () => {
+export const getClients = () => async (dispatch) => {
   try {
     const result = await http.get("/clients/myclients");
-    return result.data.data;
+    dispatch({
+      type: clientsConstants.GET_CLIENTS_SUCCESS,
+      payload: result.data.data,
+    });
   } catch (error) {
     messages.error(error);
+    dispatch({
+      type: clientsConstants.GET_CLIENTS_FAIL,
+    });
   }
 };
+
+// export const getClients = async () => {
+//   try {
+//     const result = await http.get("/clients/myclients");
+//     return result.data.data;
+//   } catch (error) {
+//     messages.error(error);
+//   }
+// };
 
 export const getClientsForPayments = async () => {
   try {

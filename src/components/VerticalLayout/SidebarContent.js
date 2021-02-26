@@ -90,6 +90,29 @@ const SidebarContent = (props) => {
           <li>
             <Link to="/#" className="has-arrow waves-effect">
               <i className="bx bxs-user-detail"></i>
+              <span>المحفظة</span>
+            </Link>
+            <ul className="sub-menu" aria-expanded="false">
+              <li>
+                <Link to="/new-transaction">إضافة سند</Link>
+              </li>
+            </ul>
+          </li>
+          <li></li>
+          <li>
+            <Link to="/#" className="has-arrow waves-effect">
+              <i className="bx bxs-user-detail"></i>
+              <span>الوظائف</span>
+            </Link>
+            <ul className="sub-menu" aria-expanded="false">
+              <li>
+                <Link to="/all-jobs">جميع الوظائف</Link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <Link to="/#" className="has-arrow waves-effect">
+              <i className="bx bxs-user-detail"></i>
               <span>التأشيرات</span>
             </Link>
             <ul className="sub-menu" aria-expanded="false">

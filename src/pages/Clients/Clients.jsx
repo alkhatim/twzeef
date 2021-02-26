@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
 import { map } from "lodash";
 
@@ -12,16 +13,18 @@ import CardContact from "../../components/Common/ContactCard";
 import { getClients } from "../../store/actions/clientsActions";
 
 const Clients = () => {
-  const params = useParams();
-  const [clients, setClients] = useState([]);
+  const dispatch = useDispatch();
+  // const [clients, setClients] = useState(
+  //   useSelector((store) => store.clients.clients)
+  // );
 
   useEffect(() => {
-    const fetch = async () => {
-      const result = await getClients();
-      setClients(result);
-    };
-    fetch();
-  }, [params]);
+    dispatch(getClients());
+    // const result = useSelector((store) => store.clients.clients);
+    // setClients(result);
+  }, [dispatch]);
+
+  const clients = useSelector((store) => store.clients.clients);
 
   return (
     <React.Fragment>

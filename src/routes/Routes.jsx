@@ -13,6 +13,8 @@ import NewAgencyUser from "../pages/AgencyUsers/NewAgencyUser";
 import Clients from "../pages/Clients/Clients";
 import NewClient from "../pages/Clients/NewClient";
 import NewVisa from "../pages/Visas/NewVisa";
+import AllJobsTable from "../pages/Jobs/AllJobsTable";
+import NewTransaction from "../pages/Wallet/NewTransaction";
 
 const privateRoutes = [
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
@@ -28,6 +30,8 @@ const privateRoutes = [
   { path: "/my-clients", component: Clients },
   { path: "/add-client", component: NewClient },
   { path: "/add-visa", component: NewVisa },
+  { path: "/all-jobs", component: AllJobsTable },
+  { path: "/new-transaction", component: NewTransaction },
 ];
 
 const publicRoutes = [{ path: "/login", component: Login }];
