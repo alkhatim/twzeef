@@ -94,6 +94,9 @@ const SidebarContent = (props) => {
             </Link>
             <ul className="sub-menu" aria-expanded="false">
               <li>
+                <Link to="/add-transactions">السندات المضافة</Link>
+              </li>
+              <li>
                 <Link to="/new-transaction">إضافة سند</Link>
               </li>
             </ul>

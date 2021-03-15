@@ -15,6 +15,7 @@ import NewClient from "../pages/Clients/NewClient";
 import NewVisa from "../pages/Visas/NewVisa";
 import AllJobsTable from "../pages/Jobs/AllJobsTable";
 import NewTransaction from "../pages/Wallet/NewTransaction";
+import AddTransactions from "../pages/Wallet/AddTransactions";
 
 const privateRoutes = [
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
@@ -32,6 +33,7 @@ const privateRoutes = [
   { path: "/add-visa", component: NewVisa },
   { path: "/all-jobs", component: AllJobsTable },
   { path: "/new-transaction", component: NewTransaction },
+  { path: "/add-transactions", component: AddTransactions },
 ];
 
 const publicRoutes = [{ path: "/login", component: Login }];
